@@ -1,2 +1,7 @@
 .sass-cache/
 *.css.map
+.idea/*
+.idea/misc.xml
+.idea/modules.xml
+.idea/tugas1.iml
+.idea/workspace.xml
