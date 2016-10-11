@@ -4,11 +4,72 @@
 // best in full screen, works on phones/tablets (min height for game is 500px..) enjoy ;)
 // Follow me on Codepen
 
-(function(){
+$(document).ready(function () {
+    // local storage detector
+    var isSupportLocalStorage = false;
+    if (typeof(Storage) !== "undefined") {
+        isSupportLocalStorage = true;
+        // more info about localStorage = http://www.w3schools.com/html/html5_webstorage.asp
+    } else {
+        alert("Your browser doesn't support local storage. Please upgrade or install another good one.");
+    }
+
+    // ------ daftar user getter ----------
+    var users = null;
+    function getUser(callback) {
+        $.getJSON("src/data/users.json", function (data) {
+            dataUser = JSON.stringify(data);
+            callback(dataUser);
+        });
+    }
+
+    getUser(function (datauser) {
+        users = JSON.parse(datauser);
+        console.log(users);
+        // give name for each user
+        for(var i = 0; i < users.users.length; i++){
+            users.users[users.users[i].username] = users.users[i];
+        }
+    });
+    // ------ daftar user getter ----------
+
+
+    // Login
+    // Login - Session
+    if(sessionStorage.getItem("username") != undefined){
+        alert("already login");
+        sessionStorage.removeItem("username");
+    }
+    // Login - Session
+    $("button[name='login']").click(function () {
+        var inUser = $("input[name='username']");
+        var inPass = $("input[name='password']");
+        var username = inUser.val();
+        var password = inPass.val();
+        var isUsernameValid  = username.search(/[a-zA-Z0-9]+$/) >= 0;
+        var isPasswordValid  = password.search(/[a-zA-Z0-9]+$/) >= 0;
+
+        if(!isUsernameValid || !isPasswordValid) {
+            alert("username dan password tak valid");
+            return;
+        }
+
+        if(users.users[username] != undefined && password == users.users[username].password){
+            sessionStorage.setItem("username", username);
+            alert("anda berhasil login");
+        } else {
+            alert("username atau password anda salah");
+        }
+    });
+    // Login [END]
+
+});
+
+(function () {
 
     var Memory = {
 
-        init: function(cards){
+        init: function (cards) {
             this.$game = $(".game");
             this.$modal = $(".modal");
             this.$overlay = $(".modal-overlay");
@@ -18,11 +79,11 @@
             this.setup();
         },
 
-        shuffleCards: function(cardsArray){
+        shuffleCards: function (cardsArray) {
             this.$cards = $(this.shuffle(this.cardsArray));
         },
 
-        setup: function(){
+        setup: function () {
             this.html = this.buildHTML();
             this.$game.html(this.html);
             this.$memoryCards = $(".card");
@@ -31,54 +92,54 @@
             this.guess = null;
         },
 
-        binding: function(){
+        binding: function () {
             this.$memoryCards.on("click", this.cardClicked);
             this.$restartButton.on("click", $.proxy(this.reset, this));
         },
         // kinda messy but hey
-        cardClicked: function(){
+        cardClicked: function () {
             var _ = Memory;
             var $card = $(this);
-            if(!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")){
+            if (!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")) {
                 $card.find(".inside").addClass("picked");
-                if(!_.guess){
+                if (!_.guess) {
                     _.guess = $(this).attr("data-id");
-                } else if(_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")){
+                } else if (_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")) {
                     $(".picked").addClass("matched");
                     _.guess = null;
                 } else {
                     _.guess = null;
                     _.paused = true;
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $(".picked").removeClass("picked");
                         Memory.paused = false;
                     }, 600);
                 }
-                if($(".matched").length == $(".card").length){
+                if ($(".matched").length == $(".card").length) {
                     _.win();
                 }
             }
         },
 
-        win: function(){
+        win: function () {
             this.paused = true;
-            setTimeout(function(){
+            setTimeout(function () {
                 Memory.showModal();
                 Memory.$game.fadeOut();
             }, 1000);
         },
 
-        showModal: function(){
+        showModal: function () {
             this.$overlay.show();
             this.$modal.fadeIn("slow");
         },
 
-        hideModal: function(){
+        hideModal: function () {
             this.$overlay.hide();
             this.$modal.hide();
         },
 
-        reset: function(){
+        reset: function () {
             this.hideModal();
             this.shuffleCards(this.cardsArray);
             this.setup();
@@ -86,7 +147,7 @@
         },
 
         // Fisher--Yates Algorithm -- http://bost.ocks.org/mike/shuffle/
-        shuffle: function(array){
+        shuffle: function (array) {
             var counter = array.length, temp, index;
             // While there are elements in the array
             while (counter > 0) {
@@ -102,12 +163,12 @@
             return array;
         },
 
-        buildHTML: function(){
+        buildHTML: function () {
             var frag = '';
-            this.$cards.each(function(k, v){
-                frag += '<div class="card" data-id="'+ v.id +'"><div class="inside">\
-				<div class="front"><img src="'+ v.img +'"\
-				alt="'+ v.name +'" /></div>\
+            this.$cards.each(function (k, v) {
+                frag += '<div class="card" data-id="' + v.id + '"><div class="inside">\
+				<div class="front"><img src="' + v.img + '"\
+				alt="' + v.name + '" /></div>\
 				<div class="back"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/codepen-logo.png"\
 				alt="Codepen" /></div></div>\
 				</div>';
