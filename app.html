@@ -13,11 +13,68 @@
     <meta name="robots" content="index,follow"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/game-style.css">
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/bootstrap-table.css">
     <script src="src/js/jquery-3.1.1.js"></script>
     <script src="src/js/main.js"></script>
 </head>
-<body>
+<style>
+body {
+  /*background-image: url("src/img/blurred-blue-background.jpg"); */
+  background-color: grey;
+}
 
+.transparent-box{
+    margin: 10px;
+    opacity: 0.8;
+    border-radius: 5%;
+    padding: 10px;
+    width: 80%;
+    background-color: white;
+}
+
+.transparent-box > button {
+    background-color: orange;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%; 
+}
+
+.row { 
+    margin: auto;
+    margin-top: 100px;  
+}
+
+</style>
+<body>
+    <div class="to-play">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="transparent-box">
+                    <h4 align="center">Hi, ___!</h4>
+                    <button name="play"> Click to Play!</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="wrap">
+                    <div class="game"></div>
+                        
+                        <div class="modal-overlay">
+                            <div class="modal">
+                                
+                            </div>
+                        </div>
+                </div><!-- End Wrap -->
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 </html>
