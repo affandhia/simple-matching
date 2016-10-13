@@ -13,22 +13,52 @@
     <meta name="robots" content="index,follow"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="mobile-web-app-capable" content="yes"/>
-    <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="src/css/bootstrap.css">
+    <link rel="stylesheet" href="src/css/app.css">
     <script src="src/js/jquery-3.1.1.js"></script>
-    <script src="src/js/app.js"></script>
     <script src="src/js/tether.js"></script>
     <script src="src/js/bootstrap.js"></script>
+    <script src="src/js/app.js"></script>
 </head>
 <body>
 <header>
-
+    <nav id="navbar">
+        <ul>
+            <li>Hello, <span class="user">User</span></li>
+            <li><input type="button" class="btn btn-info" name="logout" value="logout"/></li>
+        </ul>
+    </nav>
 </header>
 <div id="content">
     <div class="container">
-        <div class="col-md-8">
+        <div id="sidebar" class="push-md-8 col-md-4">
+            <div class="row">
+                <div id="scoreboard" class="container col-md-12">
+                    <h3 class="h3 text-xs-center">Scoreboard</h3>
+                    <table class="col-xs-12">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="timer" class="container col-md-12 text-md-center">
+                    <h3 class="h3">Control</h3>
+                    <div class="stopwatch"></div>
+                    <ul class="results"></ul>
+                    <input type="button" name="restart" value="Restart" class="btn btn-info"/>
+                </div>
+            </div>
+        </div>
+        <div id="card" class="pull-md-4 col-md-8">
             <div class="wrap">
-                <div class="game card"></div>
+                <div class="game"></div>
                 <div class="modal-overlay">
                     <div class="modal">
                         <h2 class="winner">You Rock!</h2>
@@ -55,7 +85,7 @@
     </div>
 </div>
 <footer>
-    <p class="disclaimer">All logos are property of their respective owners, No Copyright infringement intended.</p>
+    <p class="disclaimer text-md-center">All logos are property of their respective owners, No Copyright infringement intended.</p>
 </footer>
 </body>
 </html>

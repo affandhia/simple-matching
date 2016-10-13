@@ -27,12 +27,12 @@
 
     <div class="container">
         <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <input onkeydown="if(event.keyCode == 13){$('.login-form .btn-login').click();}" type="text" placeholder="Enter Username" name="username" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input onkeydown="if(event.keyCode == 13){$('.login-form .btn-login').click();}" type="password" placeholder="Enter Password" name="password" required>
 
-        <button name="login" type="button">Sign In</button>
+        <button class="btn-login" name="login" type="button">Sign In</button>
         <!-- <input type="checkbox"> Remember me -->
     </div>
 </div>

@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     // ------ daftar user getter ----------
     var users = null;
+
     function getUser(callback) {
         $.getJSON("src/data/users.json", function (data) {
             dataUser = JSON.stringify(data);
@@ -26,7 +27,7 @@ $(document).ready(function () {
     getUser(function (datauser) {
         users = JSON.parse(datauser);
         // give name for each user
-        for(var i = 0; i < users.users.length; i++){
+        for (var i = 0; i < users.users.length; i++) {
             users.users[users.users[i].username] = users.users[i];
         }
     });
@@ -35,10 +36,8 @@ $(document).ready(function () {
 
     // Login
     // Login - Session
-    if(sessionStorage.getItem("username") != undefined){
+    if (sessionStorage.getItem("username") != undefined) {
         window.location.replace("app.html");
-    }else{
-
     }
     // Login - Session
     $("button[name='login']").click(function () {
@@ -46,15 +45,15 @@ $(document).ready(function () {
         var inPass = $("input[name='password']");
         var username = inUser.val();
         var password = inPass.val();
-        var isUsernameValid  = username.search(/[a-zA-Z0-9]+$/) >= 0;
-        var isPasswordValid  = password.search(/[a-zA-Z0-9]+$/) >= 0;
+        var isUsernameValid = username.search(/[a-zA-Z0-9]+$/) >= 0;
+        var isPasswordValid = password.search(/[a-zA-Z0-9]+$/) >= 0;
 
-        if(!isUsernameValid || !isPasswordValid) {
+        if (!isUsernameValid || !isPasswordValid) {
             alert("username dan password tak valid");
             return;
         }
 
-        if(users.users[username] != undefined && password == users.users[username].password){
+        if (users.users[username] != undefined && password == users.users[username].password) {
             sessionStorage.setItem("username", username);
             window.location.replace("app.html");
         } else {
