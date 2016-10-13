@@ -144,38 +144,38 @@ $(document).ready(function () {
 
         var cards = [
             {
-                name: "php",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/php-logo_1.png",
+                name: "pooh",
+                img: "src/img/pooh.jpg",
                 id: 1
             },
             {
-                name: "css3",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/css3-logo.png",
+                name: "piglet",
+                img: "src/img/piglet.jpg",
                 id: 2
             },
             {
-                name: "html5",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/html5-logo.png",
+                name: "tiger",
+                img: "src/img/tiger.jpg",
                 id: 3
             },
             {
-                name: "jquery",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/jquery-logo.png",
+                name: "owl",
+                img: "src/img/owl.jpg",
                 id: 4
             },
             {
-                name: "javascript",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/js-logo.png",
+                name: "eeyero",
+                img: "src/img/eeyero.jpg",
                 id: 5
             },
             {
-                name: "node",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/nodejs-logo.png",
+                name: "kanga",
+                img: "src/img/kaga.jpp",
                 id: 6
             },
             {
-                name: "photoshop",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/photoshop-logo.png",
+                name: "christo",
+                img: "src/img/christo.jpg",
                 id: 7
             },
             {
