@@ -2,9 +2,9 @@
   margin: auto;
   margin-top: 100px;
   width: 450px;
-  /*border: 1px solid #000004;*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #000004; }
+  background-color: #000004; 
+}
 
 input[type=text], input[type=password] {
   width: 100%;
@@ -12,23 +12,23 @@ input[type=text], input[type=password] {
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+}
 
 label {
   font-family: source sans pro;
-  color: white; }
+  color: white; 
+}
 
-button {
+.container > button {
   background-color: #C03221;
   color: black;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%; }
-
-body {
-  background-image: url("../img/blurred-blue-background.jpg"); }
+  width: 100%; 
+}
 
 .cancelbtn {
   width: auto;
@@ -38,17 +38,38 @@ body {
 .head-container {
   width: 100%;
   background-color: #C03221;
-  padding: 1px 0px 1px 0px; }
-  .head-container > p {
-    color: white;
-    text-align: center;
-    font-family: avenir;
-    font-weight: bold;
-    font-size: 2em; }
+  padding: 1px 0px 1px 0px; 
+}
+
+.head-container > p {
+  color: white;
+  text-align: center;
+  font-family: avenir;
+  font-weight: bold;
+  font-size: 2em; 
+}
 
 .container {
-  padding: 16px; }
+  padding: 16px; 
+}
 
 span.psw {
   float: right;
-  padding-top: 16px; }
+  padding-top: 16px; 
+}
+
+
+/*APP*/
+
+
+
+
+
+
+
+
+
+
+
+
+
