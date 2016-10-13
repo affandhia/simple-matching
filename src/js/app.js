@@ -131,11 +131,11 @@ $(document).ready(function () {
                 var frag = '';
                 this.$cards.each(function (k, v) {
                     frag += '<div class="card-item col-xs-3 no-pad" data-id="' + v.id + '"><div class="inside">\
-				<div class="front"><img src="' + v.img + '"\
-				alt="' + v.name + '" /></div>\
-				<div class="back"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/codepen-logo.png"\
-				alt="Codepen" /></div></div>\
-				</div>';
+                <div class="front"><img src="' + v.img + '"\
+                alt="' + v.name + '" /></div>\
+                <div class="back"><img src="src/img/frontcard.png"\
+                alt="Codepen" /></div></div>\
+                </div>';
                 });
                 return frag;
             }
@@ -143,43 +143,43 @@ $(document).ready(function () {
 
         var cards = [
             {
-                name: "php",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/php-logo_1.png",
+                name: "pooh",
+                img: "src/img/pooh.png",
                 id: 1
             },
             {
-                name: "css3",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/css3-logo.png",
+                name: "piglet",
+                img: "src/img/piglet.png",
                 id: 2
             },
             {
-                name: "html5",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/html5-logo.png",
+                name: "tiger",
+                img: "src/img/tigger.png",
                 id: 3
             },
             {
-                name: "jquery",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/jquery-logo.png",
+                name: "owl",
+                img: "src/img/owl.png",
                 id: 4
             },
             {
-                name: "javascript",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/js-logo.png",
+                name: "eeyore",
+                img: "src/img/eeyore.png",
                 id: 5
             },
             {
-                name: "node",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/nodejs-logo.png",
+                name: "kanga",
+                img: "src/img/kanga.png",
                 id: 6
             },
             {
-                name: "photoshop",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/photoshop-logo.png",
+                name: "christo",
+                img: "src/img/christo.png",
                 id: 7
             },
             {
-                name: "python",
-                img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/python-logo.png",
+                name: "rabbit",
+                img: "src/img/rabbit.png",
                 id: 8
             }
         ];
