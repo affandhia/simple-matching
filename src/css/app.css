@@ -40,7 +40,7 @@ body {
       animation: 1s matchAnim ease-in-out;
       animation-delay: .4s; }
   .card-item .front, .card-item .back {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     backface-visibility: hidden;
     position: absolute;
     top: 0;

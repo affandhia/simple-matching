@@ -28,6 +28,32 @@ body {
 #id{
     background-color: white;
 }
+
+.scoreboard-timer {
+    background-color: rgba(242, 247, 234, 0.9);
+    /*opacity: 0.8;*/
+    color: black;
+    padding: 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%; 
+    border-radius: 5%;
+}
+
+input[type="button"] {
+    background-color: #8F9341; 
+    border-color: #8F9341;
+}
+
+#timer {
+    padding-top: 20px;
+}
+
+#card {
+    background-color: #F2F7EA;
+}
+
 </style>
 <<<<<<< HEAD
 <body>
@@ -43,26 +69,28 @@ body {
     <div class="container">
         <div id="sidebar" class="push-md-8 col-md-4">
             <div class="row">
-                <div id="scoreboard" class="container col-md-12">
-                    <h3 class="h3 text-xs-center">Scoreboard</h3>
-                    <table class="col-xs-12">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>User</th>
-                            <th>Time</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div class="scoreboard-timer">
+                    <div id="scoreboard" class="col-md-12">
+                        <h3 class="h3 text-xs-center">Scoreboard</h3>
+                        <table class="col-xs-12">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User</th>
+                                <th>Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
-                <div id="timer" class="container col-md-12 text-md-center">
-                    <h3 class="h3">Control</h3>
-                    <div class="stopwatch"></div>
-                    <ul class="results"></ul>
-                    <input type="button" name="restart" value="Restart" class="btn btn-info"/>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="timer" class="text-md-center">
+                        <h3 class="h3">Control</h3>
+                        <div class="stopwatch"></div>
+                        <ul class="results"></ul>
+                        <input type="button" name="restart" value="Restart" class="btn btn-info"/>
+                    </div>
                 </div>
             </div>
         </div>
