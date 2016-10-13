@@ -19,12 +19,12 @@ $(document).ready(function () {
         window.location.replace("index.html");
     }
 
-    function game() {
+    function Game() {
         // Memory Game
-// © 2014 Nate Wiley
-// License -- MIT
-// best in full screen, works on phones/tablets (min height for game is 500px..) enjoy ;)
-// Follow me on Codepen
+        // © 2014 Nate Wiley
+        // License -- MIT
+        // best in full screen, works on phones/tablets (min height for game is 500px..) enjoy ;)
+        // Follow me on Codepen
         Memory = {
             init: function (cards) {
                 if (!isSignedIn) {
@@ -40,8 +40,7 @@ $(document).ready(function () {
             },
 
             shuffleCards: function (cardsArray) {
-                // this.$cards = $(this.shuffle(this.cardsArray));
-                this.$cards = $(this.cardsArray);
+                this.$cards = $(this.shuffle(this.cardsArray));
             },
 
             setup: function () {
@@ -188,7 +187,7 @@ $(document).ready(function () {
         Memory.init(cards);
 
     };
-    var Memory = new game();
+    var Memory = new Game();
 
 
     // Stop watch https://codepen.io/_Billy_Brown/pen/dbJeh
@@ -314,7 +313,7 @@ $(document).ready(function () {
         stopwatch.stop();
         stopwatch.reset();
         $(".picked .matched").removeClass("matched");
-        Memory = new game();
+        Memory = new Game();
     });
 
     $logout.click(function () {
@@ -323,23 +322,54 @@ $(document).ready(function () {
     });
 
     // Store function
-    function storeScore() {
-        var score = {};
-        if (sessionStorage.getItem("score") !== undefined) {
-            sessionStorage.setItem("score", score.stringify());
-        } else {
-            score = JSON.parse(sessionStorage.getItem("score"));
-            score.sort(function (a, b) {
-                if (a["time"] > b["time"]) {
-                    return 1;
-                } else if (a["time"] < b["time"]) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
+    var score = {};
+    if (localStorage.getItem("score") == undefined) {
+        localStorage.setItem("score", JSON.stringify(score))
+    } else {
+        score = JSON.parse(localStorage.getItem("score"));
+    }
+    function showScore() {
+        var tempArray = [];
+        $("#table-score tbody").text("");
+        $.each(score, function (user, time) {
+            tempArray.push({"username": user, "time": time});
+        });
+        tempArray = tempArray.sort(function (a, b) {
+            return (a.time).localeCompare(b.time);
+        });
+        for(var index = 0; index < 5; index++){
+            if(index > tempArray.length - 1) {
+                $("#table-score tbody").append(
+                    "<tr>" +
+                    "<td>" + (index + 1) + "</td>" +
+                    "<td>-</td>" +
+                    "<td>-</td>" +
+                    "</tr>");
+                continue;
+            }
+            var user = tempArray[index];
+            $("#table-score tbody").append(
+                "<tr data-user='" + user.username + "'>" +
+                "<td>" + (index + 1) + "</td>" +
+                "<td>" + user.username + "</td>" +
+                "<td>" + user.time + "</td>" +
+                "</tr>");
         }
     }
 
+    showScore();
 
+    function storeScore() {
+        var username = sessionStorage.getItem("username");
+        var newTime = $("#timer .stopwatch").text();
+        if (score[username] == undefined) {
+            score[username] = "";
+        }
+        else if ((score[username]).localeCompare(newTime) < 0) {
+            return;
+        }
+        score[username] = newTime;
+        localStorage.setItem("score", JSON.stringify(score));
+        showScore();
+    }
 });
