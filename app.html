@@ -13,6 +13,7 @@
     <meta name="robots" content="index,follow"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="mobile-web-app-capable" content="yes"/>
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="src/css/bootstrap.css">
     <link rel="stylesheet" href="src/css/app.css">
     <script src="src/js/jquery-3.1.1.js"></script>
@@ -20,20 +21,109 @@
     <script src="src/js/bootstrap.js"></script>
     <script src="src/js/app.js"></script>
 </head>
+<style>
+body {
+  background-image: url("src/img/background1.jpg"); 
+}
+
+#id{
+    background-color: white;
+}
+
+#scoreboard-timer {
+    background-color: rgba(242, 247, 234, 0.9);
+    color: black;
+    padding: 20px;
+    margin: auto;
+    border: none;
+    width: 100%; 
+    border-radius: 5%;
+}
+
+#navbar {
+    list-style-type: none;
+    float: right;
+    background-color: #224129;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#user-logout li {
+    list-style-type: none;
+    color: white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -6px;
+}
+
+.card-item #back img{
+    width: 80%;
+}
+
+#card {
+    background-color: #F2F7EA;
+    padding-top: 14px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border-radius: 2%;
+}
+
+input[type="button"] {
+    background-color: #8F9341; 
+    border-color: #8F9341;
+}
+
+#timer {
+    padding-top: 20px;
+}
+
+#timer > h3, #scoreboard > h3, #scoreboard th, #scoreboard td {
+    color: #224129;
+}
+
+#scoreboard{
+    margin-top: 50px;
+}
+
+#user-header {
+    margin-top: 6px;
+}
+
+#tittle-header {
+    font-family: oswald;
+    font-size: 2em;
+    float: left;
+    color: white;
+    list-style-type: none;
+}
+
+</style>
 <body>
 <header>
     <nav id="navbar">
         <ul>
-            <li>Hello, <span class="user">User</span></li>
+            <li id="tittle-header">Memory Game</li>
+        </ul>
+        <ul id="user-logout">
+            <!-- <li id="tittle-header">Memory Game</li> -->
             <li><input type="button" class="btn btn-info" name="logout" value="logout"/></li>
+            <li id="user-header">Hello, <span class="user">User</span></li>
         </ul>
     </nav>
 </header>
 <div id="content">
     <div class="container">
         <div id="sidebar" class="push-md-8 col-md-4">
-            <div class="row">
-                <div id="scoreboard" class="container col-md-12">
+            <div id="scoreboard-timer" class="row">
+                <div id="timer" class="col-md-12 text-md-center">
+                    <h3 class="h3">Playing Time</h3>
+                    <div class="stopwatch"></div>
+                    <ul class="results"></ul>
+                    <input type="button" name="restart" value="Restart" class="btn btn-info"/>
+                </div>
+                    
+                <div id="scoreboard" class="col-md-12">
                     <h3 class="h3 text-xs-center">Scoreboard</h3>
                     <table id="table-score" class="col-xs-12">
                         <thead>
@@ -47,18 +137,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="timer" class="container col-md-12 text-md-center">
-                    <h3 class="h3">Control</h3>
-                    <div class="stopwatch"></div>
-                    <ul class="results"></ul>
-                    <input type="button" name="restart" value="Restart" class="btn btn-info"/>
-                </div>
             </div>
         </div>
         <div id="card" class="pull-md-4 col-md-8">
             <div class="wrap">
                 <div class="game"></div>
-                <div class="modal-overlay">
+                <!-- <div class="modal-overlay">
                     <div class="modal">
                         <h2 class="winner">You Rock!</h2>
                         <button class="restart">Play Again?</button>
@@ -77,7 +161,7 @@
                                     class="brandico-googleplus-rect"></span></a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
             </div><!-- End Wrap -->
         </div>
