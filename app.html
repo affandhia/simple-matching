@@ -40,6 +40,23 @@ body {
     border-radius: 5%;
 }
 
+#navbar {
+    list-style-type: none;
+    float: right;
+    background-color: #224129;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#user-logout li {
+    list-style-type: none;
+    color: white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -6px;
+}
+
 .card-item #back img{
     width: 80%;
 }
@@ -68,13 +85,30 @@ input[type="button"] {
 #scoreboard{
     margin-top: 50px;
 }
+
+#user-header {
+    margin-top: 6px;
+}
+
+#tittle-header {
+    font-family: oswald;
+    font-size: 2em;
+    float: left;
+    color: white;
+    list-style-type: none;
+}
+
 </style>
 <body>
 <header>
     <nav id="navbar">
         <ul>
-            <li>Hello, <span class="user">User</span></li>
+            <li id="tittle-header">Memory Game</li>
+        </ul>
+        <ul id="user-logout">
+            <!-- <li id="tittle-header">Memory Game</li> -->
             <li><input type="button" class="btn btn-info" name="logout" value="logout"/></li>
+            <li id="user-header">Hello, <span class="user">User</span></li>
         </ul>
     </nav>
 </header>
@@ -108,7 +142,7 @@ input[type="button"] {
         <div id="card" class="pull-md-4 col-md-8">
             <div class="wrap">
                 <div class="game"></div>
-                <div class="modal-overlay">
+                <!-- <div class="modal-overlay">
                     <div class="modal">
                         <h2 class="winner">You Rock!</h2>
                         <button class="restart">Play Again?</button>
@@ -127,7 +161,7 @@ input[type="button"] {
                                     class="brandico-googleplus-rect"></span></a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
             </div><!-- End Wrap -->
         </div>

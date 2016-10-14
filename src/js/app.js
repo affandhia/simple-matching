@@ -36,9 +36,11 @@ $(document).ready(function () {
         {
             init: function (cards) 
             {
-                if (!isSignedIn) {
+                if (!isSignedIn) 
+                {
                     return;
                 }
+
                 this.$game = $(".game");
                 this.$modal = $(".modal");
                 this.$overlay = $(".modal-overlay");
@@ -48,11 +50,13 @@ $(document).ready(function () {
                 this.setup();
             },
 
-            shuffleCards: function (cardsArray) {
+            shuffleCards: function (cardsArray) 
+            {
                 this.$cards = $(this.shuffle(this.cardsArray));
             },
 
-            setup: function () {
+            setup: function () 
+            {
                 this.html = this.buildHTML();
                 this.$game.html(this.html);
                 this.$memoryCards = $(".card-item");
@@ -61,31 +65,43 @@ $(document).ready(function () {
                 this.guess = null;
             },
 
-            binding: function () {
+            binding: function () 
+            {
                 this.$memoryCards.on("click", this.cardClicked);
                 this.$restartButton.on("click", $.proxy(this.reset, this));
             },
             // kinda messy but hey
-            cardClicked: function () {
+            cardClicked: function () 
+            {
                 var _ = Memory;
                 var $card = $(this);
                 stopwatch.start();
-                if (!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")) {
+                if (!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")) 
+                {
                     $card.find(".inside").addClass("picked");
                     if (!_.guess) {
                         _.guess = $(this).attr("data-id");
-                    } else if (_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")) {
+                    } 
+
+                    else if (_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")) 
+                    {
                         $(".picked").addClass("matched");
                         _.guess = null;
-                    } else {
+                    } 
+
+                    else 
+                    {
                         _.guess = null;
                         _.paused = true;
-                        setTimeout(function () {
+                        setTimeout(function () 
+                        {
                             $(".picked").removeClass("picked");
                             Memory.paused = false;
                         }, 600);
                     }
-                    if ($(".matched").length == $(".card-item").length) {
+
+                    if ($(".matched").length == $(".card-item").length) 
+                    {
                         // _.win();
                         // restart dengan klik restart
                         storeScore();
@@ -104,17 +120,20 @@ $(document).ready(function () {
                 }, 1000);
             },
 
-            showModal: function () {
+            showModal: function () 
+            {
                 this.$overlay.show();
                 this.$modal.fadeIn("slow");
             },
 
-            hideModal: function () {
+            hideModal: function () 
+            {
                 this.$overlay.hide();
                 this.$modal.hide();
             },
 
-            reset: function () {
+            reset: function () 
+            {
                 this.hideModal();
                 this.shuffleCards(this.cardsArray);
                 this.setup();
@@ -122,10 +141,12 @@ $(document).ready(function () {
             },
 
             // Fisher--Yates Algorithm -- http://bost.ocks.org/mike/shuffle/
-            shuffle: function (array) {
+            shuffle: function (array) 
+            {
                 var counter = array.length, temp, index;
                 // While there are elements in the array
-                while (counter > 0) {
+                while (counter > 0) 
+                {
                     // Pick a random index
                     index = Math.floor(Math.random() * counter);
                     // Decrease counter by 1
@@ -138,9 +159,11 @@ $(document).ready(function () {
                 return array;
             },
 
-            buildHTML: function () {
+            buildHTML: function () 
+            {
                 var frag = '';
-                this.$cards.each(function (k, v) {
+                this.$cards.each(function (k, v) 
+                {
                     frag += '<div class="card-item col-xs-3 no-pad" data-id="' + v.id + '"><div class="inside">\
                 <div class="front"><img src="' + v.img + '"\
                 alt="' + v.name + '" /></div>\
@@ -148,6 +171,7 @@ $(document).ready(function () {
                 alt="Codepen" /></div></div>\
                 </div>';
                 });
+                
                 return frag;
             }
         };
@@ -198,18 +222,21 @@ $(document).ready(function () {
         Memory.init(cards);
 
     };
-    var Memory = new Game();
+    // var Memory = new Game();
 
 
     // Stop watch https://codepen.io/_Billy_Brown/pen/dbJeh
 
-    function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
+    function _classCallCheck(instance, Constructor) 
+    {
+        if (!(instance instanceof Constructor)) 
+        {
             throw new TypeError("Cannot call a class as a function");
         }
     }
 
-    var Stopwatch = function () {
+    var Stopwatch = function () 
+    {
         var diff = 0;
 
         function Stopwatch(display, results) {
@@ -223,11 +250,13 @@ $(document).ready(function () {
             this.print(this.times);
         }
 
-        Stopwatch.prototype.reset = function reset() {
+        Stopwatch.prototype.reset = function reset() 
+        {
             this.times = [0, 0, 0];
         };
 
-        Stopwatch.prototype.start = function start() {
+        Stopwatch.prototype.start = function start() 
+        {
             if (!this.time) this.time = performance.now();
             if (!this.running) {
                 this.running = true;
@@ -235,27 +264,33 @@ $(document).ready(function () {
             }
         };
 
-        Stopwatch.prototype.lap = function lap() {
+        Stopwatch.prototype.lap = function lap() 
+        {
             var times = this.times;
-            if (this.running) {
+            if (this.running) 
+            {
                 this.reset();
             }
+
             var li = document.createElement('li');
             li.innerText = this.format(times);
             this.results.appendChild(li);
         };
 
-        Stopwatch.prototype.stop = function stop() {
+        Stopwatch.prototype.stop = function stop() 
+        {
             this.running = false;
             this.time = null;
         };
 
-        Stopwatch.prototype.restart = function restart() {
+        Stopwatch.prototype.restart = function restart() 
+        {
             if (!this.time) this.time = performance.now();
             if (!this.running) {
                 this.running = true;
                 requestAnimationFrame(this.step.bind(this));
             }
+
             this.reset();
         };
 
@@ -287,20 +322,24 @@ $(document).ready(function () {
             }
         };
 
-        Stopwatch.prototype.print = function print() {
+        Stopwatch.prototype.print = function print() 
+        {
             this.display.innerText = this.format(this.times);
         };
 
-        Stopwatch.prototype.format = function format(times) {
+        Stopwatch.prototype.format = function format(times) 
+        {
             return pad0(times[0], 2) + ':' + pad0(times[1], 2) + ':' + pad0(Math.floor(times[2]), 2);
         };
 
         return Stopwatch;
     }();
 
-    function pad0(value, count) {
+    function pad0(value, count) 
+    {
         var result = value.toString();
-        for (; result.length < count; --count) {
+        for (; result.length < count; --count)
+        {
             result = '0' + result;
         }
         return result;
@@ -320,36 +359,49 @@ $(document).ready(function () {
     var $restart = $("#timer input[name='restart']");       // get restart button
     var $logout = $("#navbar input[name='logout']");       // get logout button
 
-    $restart.click(function () {
+    $restart.click(function () 
+    {
         stopwatch.stop();
         stopwatch.reset();
         $(".picked .matched").removeClass("matched");
         Memory = new Game();
     });
 
-    $logout.click(function () {
+    $logout.click(function () 
+    {
         sessionStorage.removeItem("username");
         window.location.replace("index.html");
     });
 
     // Store function
     var score = {};
-    if (localStorage.getItem("score") == undefined) {
+    if (localStorage.getItem("score") == undefined) 
+    {
         localStorage.setItem("score", JSON.stringify(score))
-    } else {
+    } 
+
+    else 
+    {
         score = JSON.parse(localStorage.getItem("score"));
     }
-    function showScore() {
+    function showScore() 
+    {
         var tempArray = [];
         $("#table-score tbody").text("");
-        $.each(score, function (user, time) {
+        $.each(score, function (user, time) 
+        {
             tempArray.push({"username": user, "time": time});
         });
-        tempArray = tempArray.sort(function (a, b) {
+
+        tempArray = tempArray.sort(function (a, b) 
+        {
             return (a.time).localeCompare(b.time);
         });
-        for(var index = 0; index < 5; index++){
-            if(index > tempArray.length - 1) {
+
+        for(var index = 0; index < 5; index++)
+        {
+            if(index > tempArray.length - 1) 
+            {
                 $("#table-score tbody").append(
                     "<tr>" +
                     "<td>" + (index + 1) + "</td>" +
@@ -358,6 +410,7 @@ $(document).ready(function () {
                     "</tr>");
                 continue;
             }
+
             var user = tempArray[index];
             $("#table-score tbody").append(
                 "<tr data-user='" + user.username + "'>" +
@@ -370,15 +423,21 @@ $(document).ready(function () {
 
     showScore();
 
-    function storeScore() {
+    function storeScore() 
+    {
         var username = sessionStorage.getItem("username");
         var newTime = $("#timer .stopwatch").text();
-        if (score[username] == undefined) {
+
+        if (score[username] == undefined) 
+        {
             score[username] = "";
         }
-        else if ((score[username]).localeCompare(newTime) < 0) {
+
+        else if ((score[username]).localeCompare(newTime) < 0) 
+        {
             return;
         }
+        
         score[username] = newTime;
         localStorage.setItem("score", JSON.stringify(score));
         showScore();
