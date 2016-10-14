@@ -105,6 +105,7 @@ $(document).ready(function () {
                     {
                         $("#modal-win").modal("show");
                         isFinished = true;
+                        isStarted = false;
                         stopwatch.stop();
                         storeScore();
                     }
@@ -358,27 +359,32 @@ $(document).ready(function () {
     var isFinished = false;
 
     $startOnModal.click(function () {
+        if(isStarted == true){
+            $("#modal-start").modal("hide");
+            return;
+        }
         isStarted = true;
         isFinished = false;
         stopwatch.start();
+        $(".picked .matched").removeClass("matched");
+        Memory = new Game();
         $("#modal-start").modal("hide");
     });
     $winOnModal.click(function () {
         stopwatch.reset();
         stopwatch.start();
-        $(".picked .matched").removeClass("matched");
-        Memory = new Game();
         $("#modal-win").modal("hide");
     });
     $restartOnModal.click(function () {
         $(".picked .matched").removeClass("matched");
         Memory = new Game();
         isStarted = true;
+        stopwatch.reset();
         stopwatch.start();
         $("#modal-restart").modal("hide");
     });
     $deferRestartOnModal.click(function () {
-        if(!isFinished){
+        if(!isFinished && isStarted){
             stopwatch.start();
         }
     });
@@ -387,7 +393,6 @@ $(document).ready(function () {
         // modal show by HTML
         // additional function
         stopwatch.stop();
-        stopwatch.reset();
     });
 
     $logout.click(function () 
