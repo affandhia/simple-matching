@@ -53,7 +53,7 @@ $(document).ready(function ()
 
             shuffleCards: function (cardsArray) 
             {
-                this.$cards = $(/*this.shuffle(*/this.cardsArray);
+                this.$cards = $(this.shuffle(this.cardsArray));
             },
 
             setup: function () 
