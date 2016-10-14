@@ -222,7 +222,7 @@ $(document).ready(function () {
         Memory.init(cards);
 
     };
-    // var Memory = new Game();
+    var Memory = new Game();
 
 
     // Stop watch https://codepen.io/_Billy_Brown/pen/dbJeh
