@@ -16,7 +16,7 @@ input[type=text], input[type=password] {
 }
 
 label {
-  font-family: source sans pro;
+  font-family: oswald;
   color: #8F9341; 
 }
 
@@ -44,9 +44,13 @@ label {
 .head-container > p {
   color: white;
   text-align: center;
-  font-family: avenir;
+  font-family: roboto;
   font-weight: bold;
   font-size: 2em; 
+}
+
+#card{
+  background-color: #224129;
 }
 
 .container {

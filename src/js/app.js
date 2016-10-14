@@ -2,19 +2,26 @@ $(document).ready(function () {
 
     var isSupportLocalStorage = false;
     var isSignedIn = false;
-    if (typeof(Storage) !== "undefined") {
+    if (typeof(Storage) !== "undefined") 
+    {
         isSupportLocalStorage = true;
         var username = sessionStorage.getItem("username");  // get username from session
         if (username == undefined) {
             window.location.replace("index.html");
-        } else {
+        } 
+
+        else 
+        {
             isSignedIn = true;
 
             // Ganti string User di navbar - hello user
             $("#navbar .user").text(username);
         }
         // more info about localStorage = http://www.w3schools.com/html/html5_webstorage.asp
-    } else {
+    } 
+
+    else 
+    {
         alert("Your browser doesn't support local storage. Please upgrade or install another good one.");
         window.location.replace("index.html");
     }
@@ -25,8 +32,10 @@ $(document).ready(function () {
         // License -- MIT
         // best in full screen, works on phones/tablets (min height for game is 500px..) enjoy ;)
         // Follow me on Codepen
-        Memory = {
-            init: function (cards) {
+        Memory = 
+        {
+            init: function (cards) 
+            {
                 if (!isSignedIn) {
                     return;
                 }
@@ -85,9 +94,11 @@ $(document).ready(function () {
                 }
             },
 
-            win: function () {
+            win: function () 
+            {
                 this.paused = true;
-                setTimeout(function () {
+                setTimeout(function () 
+                {
                     Memory.showModal();
                     Memory.$game.fadeOut();
                 }, 1000);
