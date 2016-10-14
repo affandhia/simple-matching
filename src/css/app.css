@@ -1,3 +1,77 @@
+#id {
+        background-color: white;
+    }
+
+    #scoreboard-timer {
+        background-color: rgba(242, 247, 234, 0.9);
+        color: black;
+        padding: 20px;
+        margin: auto;
+        border: none;
+        width: 100%;
+        border-radius: 5%;
+    }
+
+    #navbar {
+        position: absolute;
+        z-index: 99;
+        list-style-type: none;
+        float: right;
+        background-color: #224129;
+        padding: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    #user-logout li {
+        list-style-type: none;
+        color: white;
+        float: right;
+        padding-right: 20px;
+        margin-top: -6px;
+    }
+
+    .card-item #back img {
+        width: 80%;
+    }
+
+    #card {
+        background-color: #F2F7EA;
+        padding-top: 14px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        border-radius: 2%;
+    }
+
+    input[type="button"] {
+        background-color: #8F9341;
+        border-color: #8F9341;
+    }
+
+    #timer {
+        padding-top: 20px;
+    }
+
+    #timer > h3, #scoreboard > h3, #scoreboard th, #scoreboard td {
+        color: #224129;
+    }
+
+    #scoreboard {
+        margin-top: 50px;
+    }
+
+    #user-header {
+        margin-top: 6px;
+    }
+
+    #tittle-header {
+        font-family: oswald;
+        font-size: 2em;
+        float: left;
+        color: white;
+        list-style-type: none;
+    }
+    
 html, body {
   height: 100%; }
 
