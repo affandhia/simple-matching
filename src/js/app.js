@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(document).ready(function () 
+{
 
     var isSupportLocalStorage = false;
     var isSignedIn = false;
@@ -6,7 +7,9 @@ $(document).ready(function () {
     {
         isSupportLocalStorage = true;
         var username = sessionStorage.getItem("username");  // get username from session
-        if (username == undefined) {
+
+        if (username == undefined) 
+        {
             window.location.replace("index.html");
         }
         else 
@@ -23,7 +26,8 @@ $(document).ready(function () {
         window.location.replace("index.html");
     }
 
-    function Game() {
+    function Game() 
+    {
         // Memory Game
         // © 2014 Nate Wiley
         // License -- MIT
@@ -80,7 +84,8 @@ $(document).ready(function () {
                 if (!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")) 
                 {
                     $card.find(".inside").addClass("picked");
-                    if (!_.guess) {
+                    if (!_.guess) 
+                    {
                         _.guess = $(this).attr("data-id");
                     } 
 
@@ -459,7 +464,7 @@ $(document).ready(function () {
         {
             return;
         }
-        
+
         score[username] = newTime;
         localStorage.setItem("score", JSON.stringify(score));
         showScore();
