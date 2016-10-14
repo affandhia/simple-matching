@@ -1,3 +1,68 @@
+// Extra small devices (portrait phones, less than 544px)
+@mixin xs {
+  @media (max-width: 543px) {
+    @content;
+  }
+}
+
+// Small devices (landscape phones, 544px and up)
+@mixin sm($state) {
+  @if($state == min){
+    @media (min-width: 544px) {
+      @content;
+    }
+  } @else if($state == max) {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else {
+    @media (min-width: 544px) and (max-width: 767px) {
+      @content;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@mixin md($state) {
+  @if($state == min){
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if($state == max) {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@mixin lg($state) {
+  @if($state == min){
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if($state == max) {
+    @media (max-width: 1199px) {
+      @content;
+    }
+  } @else {
+    @media (min-width: 992px) and (max-width: 1199px) {
+      @content;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@mixin xl {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
 html, body {
   height: 100%;
 }
@@ -17,18 +82,12 @@ body {
   height: 100%;
 }
 
-@mixin width($max) {
-  @media (max-width: $max) {
-    @content;
-  }
-}
-
 @keyframes matchAnim {
   0% {
     background: #bcffcc;
   }
   100% {
-    background: white;
+    background: transparent;
   }
 }
 
@@ -36,21 +95,45 @@ body {
   padding: 0;
 }
 
+#content {
+  padding-top: 7em;
+  @include xs {
+    padding-top: 10em;
+  }
+}
+
+#sidebar {
+  @include sm(max) {
+    padding: 0;
+  }
+
+  #scoreboard-timer {
+    @include sm(max) {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+}
+
+#card {
+  padding: .5em;
+  @include sm(max) {
+    min-height: 85vh;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+}
+
 .card-item {
   height: 20vh;
-  //float: left;
-  //padding: 5px;
+  float: left;
   text-align: center;
   display: block;
   perspective: 500px;
-  //position: relative;
+  position: relative;
   cursor: pointer;
   z-index: 50;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  //@include width(800px){
-  //  width: 25%;
-  //  height: 16.666%;
-  //}
   .inside {
     height: 100%;
     transform-style: preserve-3d;
@@ -62,19 +145,21 @@ body {
     &.matched {
       animation: 1s matchAnim ease-in-out;
       animation-delay: .4s;
+
+      .front {
+        animation: 1s matchAnim ease-in-out;
+        animation-delay: .4s;
+      }
     }
   }
 
   .front, .back {
-    border: 1px solid black;
     backface-visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    //padding: 20px;
-
     img {
       max-width: 100%;
       display: block;
@@ -84,18 +169,12 @@ body {
   }
   .front {
     transform: rotateY(-180deg);
-    @include width(800px) {
-      padding: 5px;
-    }
-  }
-  .back {
-    @include width(800px) {
-      padding: 10px;
-    }
+    position: absolute;
+    z-index: 1;
   }
 }
 
-.modal-overlay {
+.modal-credit-overlay {
   display: none;
   background: rgba(0, 0, 0, .8);
   position: fixed;
@@ -105,7 +184,7 @@ body {
   height: 100%;
 }
 
-.modal {
+.modal-credit {
   display: none;
   position: relative;
   width: 500px;
@@ -123,8 +202,8 @@ body {
     text-align: center;
     font-family: "Anton", sans-serif;
     color: #4d4d4d;
-    text-shadow: 0px 3px 0 black;
-    @include width(480px) {
+    text-shadow: 0 3px 0 black;
+    @include sm(max) {
       font-size: 60px;
     }
   }
@@ -134,13 +213,11 @@ body {
     padding: 20px 30px;
     display: block;
     font-size: 30px;
-    border: none;
     background: #4d4d4d;
     background: linear-gradient(#4d4d4d, #222);
-    border: 1px solid #222;
     border-radius: 5px;
     color: white;
-    text-shadow: 0px 1px 0 black;
+    text-shadow: 0 1px 0 black;
     cursor: pointer;
     &:hover {
       background: linear-gradient(#222, black);
@@ -201,5 +278,17 @@ body {
         }
       }
     }
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 3em;
+  margin-top: 5em;
+  background-color: #3c763d;
+  color: white;
+  a {
+    text-decoration: none;
+    color: darken(#2d672d, .3);
   }
 }

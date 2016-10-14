@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Matches</title>
+    <title>Memory Game</title>
     <meta name="description" content="A simple addictive matching game for your spare time."/>
     <meta name="keywords" content="affan dhia ardhiva bthari game matching addictive"/>
     <meta name="rating" content="general"/>
@@ -22,81 +22,83 @@
     <script src="src/js/app.js"></script>
 </head>
 <style>
-body {
-  background-image: url("src/img/background1.jpg"); 
-}
+    body {
+        background-image: url("src/img/background1.jpg");
+    }
 
-#id{
-    background-color: white;
-}
+    #id {
+        background-color: white;
+    }
 
-#scoreboard-timer {
-    background-color: rgba(242, 247, 234, 0.9);
-    color: black;
-    padding: 20px;
-    margin: auto;
-    border: none;
-    width: 100%; 
-    border-radius: 5%;
-}
+    #scoreboard-timer {
+        background-color: rgba(242, 247, 234, 0.9);
+        color: black;
+        padding: 20px;
+        margin: auto;
+        border: none;
+        width: 100%;
+        border-radius: 5%;
+    }
 
-#navbar {
-    list-style-type: none;
-    float: right;
-    background-color: #224129;
-    padding: 15px;
-    margin-bottom: 20px;
-    width: 100%;
-}
+    #navbar {
+        position: absolute;
+        z-index: 99;
+        list-style-type: none;
+        float: right;
+        background-color: #224129;
+        padding: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
 
-#user-logout li {
-    list-style-type: none;
-    color: white;
-    float: right;
-    padding-right: 20px;
-    margin-top: -6px;
-}
+    #user-logout li {
+        list-style-type: none;
+        color: white;
+        float: right;
+        padding-right: 20px;
+        margin-top: -6px;
+    }
 
-.card-item #back img{
-    width: 80%;
-}
+    .card-item #back img {
+        width: 80%;
+    }
 
-#card {
-    background-color: #F2F7EA;
-    padding-top: 14px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    border-radius: 2%;
-}
+    #card {
+        background-color: #F2F7EA;
+        padding-top: 14px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        border-radius: 2%;
+    }
 
-input[type="button"] {
-    background-color: #8F9341; 
-    border-color: #8F9341;
-}
+    input[type="button"] {
+        background-color: #8F9341;
+        border-color: #8F9341;
+    }
 
-#timer {
-    padding-top: 20px;
-}
+    #timer {
+        padding-top: 20px;
+    }
 
-#timer > h3, #scoreboard > h3, #scoreboard th, #scoreboard td {
-    color: #224129;
-}
+    #timer > h3, #scoreboard > h3, #scoreboard th, #scoreboard td {
+        color: #224129;
+    }
 
-#scoreboard{
-    margin-top: 50px;
-}
+    #scoreboard {
+        margin-top: 50px;
+    }
 
-#user-header {
-    margin-top: 6px;
-}
+    #user-header {
+        margin-top: 6px;
+    }
 
-#tittle-header {
-    font-family: oswald;
-    font-size: 2em;
-    float: left;
-    color: white;
-    list-style-type: none;
-}
+    #tittle-header {
+        font-family: oswald;
+        font-size: 2em;
+        float: left;
+        color: white;
+        list-style-type: none;
+    }
 
 </style>
 <body>
@@ -120,9 +122,11 @@ input[type="button"] {
                     <h3 class="h3">Playing Time</h3>
                     <div class="stopwatch"></div>
                     <ul class="results"></ul>
-                    <input type="button" name="restart" value="Restart" class="btn btn-info"/>
+                    <input type="button" name="start" value="Start" class="btn btn-info" data-toggle="modal"
+                           data-target="#modal-start"/>
+                    <input type="button" name="restart" value="Restart" class="btn btn-info" data-toggle="modal"
+                           data-target="#modal-restart"/>
                 </div>
-                    
                 <div id="scoreboard" class="col-md-12">
                     <h3 class="h3 text-xs-center">Scoreboard</h3>
                     <table id="table-score" class="col-xs-12">
@@ -142,33 +146,82 @@ input[type="button"] {
         <div id="card" class="pull-md-4 col-md-8">
             <div class="wrap">
                 <div class="game"></div>
-                <!-- <div class="modal-overlay">
-                    <div class="modal">
-                        <h2 class="winner">You Rock!</h2>
-                        <button class="restart">Play Again?</button>
-                        <p class="message">Developed on <a href="http://codepen.io">CodePen</a> by <a
-                                href="http://codepen.io/natewiley">Nate Wiley</a></p>
-                        <p class="share-text">Share it?</p>
-                        <ul class="social">
-                            <li><a target="_blank" class="twitter"
-                                   href="http://twitter.com/share?url=http://codepen.io/natewiley/pen/HBrbL"><span
-                                    class="brandico-twitter-bird"></span></a></li>
-                            <li><a target="_blank" class="facebook"
-                                   href="http://www.facebook.com/sharer.php?u=http://codepen.io/natewiley/pen/HBrbL"><span
-                                    class="brandico-facebook"></span></a></li>
-                            <li><a target="_blank" class="google"
-                                   href="https://plus.google.com/share?url=http://codepen.io/natewiley/pen/HBrbL"><span
-                                    class="brandico-googleplus-rect"></span></a></li>
-                        </ul>
-                    </div>
-                </div> -->
-
             </div><!-- End Wrap -->
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-restart" tabindex="-1" role="dialog"
+     aria-labelledby="modalRestart" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Restart game?</h4>
+            </div>
+            <div class="modal-body">
+                Do you wanted to restart game? Your progress will be discarded.
+            </div>
+            <div class="modal-footer">
+                <button name="defer-restart-game" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button name="restart-game" type="button" class="btn btn-primary">Of Course!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-start" tabindex="-1" role="dialog"
+     aria-labelledby="modalStartGame" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Starting Game...</h4>
+            </div>
+            <div class="modal-body">
+                After you start this game, the timer will be counting until you are done with this cool game. Enjoy!
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-secondary" data-dismiss="modal">Defer</button>
+                <button type="button" name="start-game" class="btn btn-primary">Let's Go!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-win" tabindex="-1" role="dialog"
+     aria-labelledby="modalWinMessage" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Congratulation!</h4>
+            </div>
+            <div class="modal-body">
+                <p class="message">Thank you for playing our games. Please support us!</p>
+                <p class="message">Games Environment by <a
+                        href="https://github.com/affandhia">Affan Dhia Ardhiva</a> and <a
+                        href="https://github.com/bthari">Bthari Smartnastiti</a></p>
+                <p class="message">Cards Game System by <a
+                        href="http://codepen.io/natewiley">Nate Wiley</a></p>
+                <p class="message">Stopwatch System by <a
+                        href="https://codepen.io/_Billy_Brown/pen/dbJeh">Billy Brown</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button name="win-game" type="button" class="btn btn-primary">Play Again!</button>
+            </div>
+        </div>
+    </div>
+</div>
 <footer>
-    <p class="disclaimer text-md-center">All logos are property of their respective owners, No Copyright infringement intended.</p>
+    Copyright 2016 Affan and Bthari. Background by <a href="http://www.hutui6.com/">Hutui6</a>. Assets by <a
+        href="#">Imager</a>
 </footer>
 </body>
 </html>

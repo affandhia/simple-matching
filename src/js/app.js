@@ -8,16 +8,13 @@ $(document).ready(function () {
         var username = sessionStorage.getItem("username");  // get username from session
         if (username == undefined) {
             window.location.replace("index.html");
-        } 
-
+        }
         else 
         {
             isSignedIn = true;
-
             // Ganti string User di navbar - hello user
             $("#navbar .user").text(username);
         }
-        // more info about localStorage = http://www.w3schools.com/html/html5_webstorage.asp
     } 
 
     else 
@@ -52,7 +49,7 @@ $(document).ready(function () {
 
             shuffleCards: function (cardsArray) 
             {
-                this.$cards = $(this.shuffle(this.cardsArray));
+                this.$cards = $(/*this.shuffle(*/this.cardsArray);
             },
 
             setup: function () 
@@ -73,9 +70,13 @@ $(document).ready(function () {
             // kinda messy but hey
             cardClicked: function () 
             {
+                if(!isStarted) {
+                    $("#modal-start").modal("show");
+                    return;
+                }
                 var _ = Memory;
                 var $card = $(this);
-                stopwatch.start();
+
                 if (!_.paused && !$card.find(".inside").hasClass("matched") && !$card.find(".inside").hasClass("picked")) 
                 {
                     $card.find(".inside").addClass("picked");
@@ -102,22 +103,12 @@ $(document).ready(function () {
 
                     if ($(".matched").length == $(".card-item").length) 
                     {
-                        // _.win();
-                        // restart dengan klik restart
+                        $("#modal-win").modal("show");
+                        isFinished = true;
+                        stopwatch.stop();
                         storeScore();
-                        $("#timer input[name='restart']").click();
                     }
                 }
-            },
-
-            win: function () 
-            {
-                this.paused = true;
-                setTimeout(function () 
-                {
-                    Memory.showModal();
-                    Memory.$game.fadeOut();
-                }, 1000);
             },
 
             showModal: function () 
@@ -357,14 +348,46 @@ $(document).ready(function () {
 
     // App Function
     var $restart = $("#timer input[name='restart']");       // get restart button
+    var $restartOnModal = $("#modal-restart .modal-footer button[name='restart-game']");
+    var $deferRestartOnModal = $("#modal-restart .modal-footer button[name='defer-restart-game']");
+    var $start = $("#timer input[name='start']");       // get start button
+    var $startOnModal = $("#modal-start .modal-footer button[name='start-game']");
+    var $winOnModal = $("#modal-win .modal-footer button[name='win-game']");
     var $logout = $("#navbar input[name='logout']");       // get logout button
+    var isStarted = false;
+    var isFinished = false;
 
-    $restart.click(function () 
-    {
-        stopwatch.stop();
+    $startOnModal.click(function () {
+        isStarted = true;
+        isFinished = false;
+        stopwatch.start();
+        $("#modal-start").modal("hide");
+    });
+    $winOnModal.click(function () {
         stopwatch.reset();
+        stopwatch.start();
         $(".picked .matched").removeClass("matched");
         Memory = new Game();
+        $("#modal-win").modal("hide");
+    });
+    $restartOnModal.click(function () {
+        $(".picked .matched").removeClass("matched");
+        Memory = new Game();
+        isStarted = true;
+        stopwatch.start();
+        $("#modal-restart").modal("hide");
+    });
+    $deferRestartOnModal.click(function () {
+        if(!isFinished){
+            stopwatch.start();
+        }
+    });
+    $restart.click(function () 
+    {
+        // modal show by HTML
+        // additional function
+        stopwatch.stop();
+        stopwatch.reset();
     });
 
     $logout.click(function () 
@@ -378,8 +401,7 @@ $(document).ready(function () {
     if (localStorage.getItem("score") == undefined) 
     {
         localStorage.setItem("score", JSON.stringify(score))
-    } 
-
+    }
     else 
     {
         score = JSON.parse(localStorage.getItem("score"));
